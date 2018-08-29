@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Halo</title>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/qrcode.js"></script>
+</head>
+<body>
+<input id="text" type="text" value="http://jindo.dev.naver.com/collie" style="width:80%" /><br />
+<div id="qrcode" style="width:100px; height:100px; margin-top:15px;"></div>
+<a id="downloadLink"></a>
+<script type="text/javascript">
+    var qrcode = new QRCode(document.getElementById("qrcode"), {
+        width : 200,
+        height : 200
+    });
+
+    var qrcodes = [
+        'hahahhahahahha',
+        'lalalallalal'
+    ];
+
+    function generateQrcode() {
+        qrcodes.forEach(function (item, index, p3) {
+
+            qrcode.makeCode(item);
+            setTimeout(function () {
+                downloadClick(index);
+            },1000);
+
+
+
+
+        });
+
+    }
+    generateQrcode();
+//    function makeCode () {
+//        var elText = document.getElementById("text");
+//
+//        if (!elText.value) {
+//            alert("Input a text");
+//            elText.focus();
+//            return;
+//        }
+//
+//        qrcode.makeCode(elText.value);
+//    }
+//
+//    makeCode();
+//    downloadClick();
+//    $("#text").
+//    on("blur", function () {
+//        makeCode();
+//    }).
+//    on("keydown", function (e) {
+//        if (e.keyCode == 13) {
+//            makeCode();
+//        }
+//    });
+
+    //jquery
+    function downloadClick (imageName) {
+        // 获取base64的图片节点
+        var img = $('#qrcode img')[0];
+        // 构建画布
+        var canvas = document.createElement('canvas');
+        canvas.width = img.width;
+        canvas.height = img.height;
+        canvas.getContext('2d').drawImage(img, 0, 0);
+        // 构造url
+        url = canvas.toDataURL('image/png');
+        // 构造a标签并模拟点击
+        var downloadLink = $('#downloadLink').attr("href", url).attr("download", imageName+".png");
+        downloadLink[0].click();
+    }
+</script>
+
+<!--<div id="qrcode"></div>-->
+<!--<a id="downloadLink"></a>-->
+<!--<button type="button" onclick="downloadClick()">下载</button>-->
+<!--<script type="text/javascript">-->
+    <!--// qrcode.js-->
+    <!--var qrcode = new QRCode(document.getElementById("qrcode"), {-->
+        <!--text: "i am the first qrcode",-->
+        <!--width: 128, //生成的二维码的宽度-->
+        <!--height: 128, //生成的二维码的高度-->
+        <!--colorDark : "#000000", // 生成的二维码的深色部分-->
+        <!--colorLight : "#ffffff", //生成二维码的浅色部分-->
+        <!--correctLevel : QRCode.CorrectLevel.H-->
+    <!--});-->
+    <!--//jquery-qrcode.js-->
+    <!--var qrcode = $('#qrcode').qrcode({-->
+        <!--width: 128,-->
+        <!--height: 128,-->
+        <!--text: "size doesn't matter"-->
+    <!--});-->
+    <!--//js-->
+    <!--function downloadClick () {-->
+        <!--// 获取base64的图片节点-->
+        <!--var img = document.getElementById('qrcode').getElementsByTagName('img')[0];-->
+        <!--// 构建画布-->
+        <!--var canvas = document.createElement('canvas');-->
+        <!--canvas.width = img.width;-->
+        <!--canvas.height = img.height;-->
+        <!--canvas.getContext('2d').drawImage(img, 0, 0);-->
+        <!--// 构造url-->
+        <!--url = canvas.toDataURL('image/png');-->
+        <!--// 构造a标签并模拟点击-->
+        <!--var downloadLink = document.getElementById('downloadLink');-->
+        <!--downloadLink.setAttribute('href', url);-->
+        <!--downloadLink.setAttribute('download', '二维码.png');-->
+        <!--downloadLink.click();-->
+    <!--}-->
+    <!--//jquery-->
+    <!--function downloadClick () {-->
+        <!--// 获取base64的图片节点-->
+        <!--var img = $('#qrcode img').[0];-->
+        <!--// 构建画布-->
+        <!--var canvas = document.createElement('canvas');-->
+        <!--canvas.width = img.width;-->
+        <!--canvas.height = img.height;-->
+        <!--canvas.getContext('2d').drawImage(img, 0, 0);-->
+        <!--// 构造url-->
+        <!--url = canvas.toDataURL('image/png');-->
+        <!--// 构造a标签并模拟点击-->
+        <!--var downloadLink = $('#downloadLink').attr("href", url).attr("download", "二维码.png");-->
+        <!--downloadLink[0].click();-->
+    <!--}-->
+<!--</script>-->
+</body>
+</html>
