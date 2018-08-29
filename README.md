@@ -1,18 +1,18 @@
 # QrcodeProject
-##功能描述
+## 功能描述
 web端的二维码生成和下载功能
-##使用的插件
+## 使用的插件
 - jquery
 - qrcode
 
-##生成二维码
+## 生成二维码
 	var qrcode = new QRCode(document.getElementById("qrcode"), {
         width : 200,
         height : 200
     });
     var text = '1234567789';
     qrcode.makeCode(text);
-##二维码的下载
+## 二维码的下载
 	<a id="downloadLink"></a>
 	/**imageName,生成二维码的名字
 	**/
